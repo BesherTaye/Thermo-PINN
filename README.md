@@ -78,21 +78,22 @@ The network is trained to minimize a **physics-informed loss function**, ensurin
 
 The **total loss** is defined as: 
 
+```math
 $$\mathcal{L} = \log_{10} \left( \lambda_u \mathcal{L}_u + \mathcal{L}_{\text{PDE}} \right)$$
-
+```
 where:  
 
 **PDE Residual Loss** ensures that the neural network satisfies the governing equations:
 
-$$
-\mathcal{L}_{\text{PDE}} = \frac{1}{N_{\text{int}}} \sum_{i=1}^{N_{\text{int}}} \left| \mathcal{R}_f(x_i,t_i) \right|^2 + \left| \mathcal{R}_s(x_i,t_i) \right|^2.
-$$
+```math
+$$\mathcal{L}_{\text{PDE}} = \frac{1}{N_{\text{int}}} \sum_{i=1}^{N_{\text{int}}} \left| \mathcal{R}_f(x_i,t_i) \right|^2 + \left| \mathcal{R}_s(x_i,t_i) \right|^2.$$
+```
 
 **Boundary and Initial Condition Loss** ensures physical constraints are met:
 
-$$
-\mathcal{L}_u = \frac{1}{N_{\text{b}}} \sum_{i=1}^{N_{\text{b}}} \left| T_f^{\text{pred}}(x_i, t_i) - T_f^{\text{true}}(x_i, t_i) \right|^2 + \left| T_s^{\text{pred}}(x_i, t_i) - T_s^{\text{true}}(x_i, t_i) \right|^2.
-$$
+```math
+$$\mathcal{L}_u = \frac{1}{N_{\text{b}}} \sum_{i=1}^{N_{\text{b}}} \left| T_f^{\text{pred}}(x_i, t_i) - T_f^{\text{true}}(x_i, t_i) \right|^2 + \left| T_s^{\text{pred}}(x_i, t_i) - T_s^{\text{true}}(x_i, t_i) \right|^2.$$
+```
 
 $\lambda_u$ is a weighting factor to balance the importance of PDE residuals and boundary conditions.
 
